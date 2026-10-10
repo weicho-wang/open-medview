@@ -9,7 +9,8 @@ namespace openmedview {
 enum class AppMode {
 	Help,
 	Inspect,
-	Anonymize
+	Anonymize,
+	Preview
 };
 
 struct CliOptions {

@@ -7,6 +7,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(GDCM CONFIG REQUIRED)
+find_package(ITK CONFIG REQUIRED)
+find_package(VTK CONFIG REQUIRED COMPONENTS
+    IOGDCM
+    IOImage
+    ImagingCore
+    RenderingCore
+    RenderingImage
+    InteractionImage
+)
 find_package(nlohmann_json CONFIG REQUIRED)
 
 if(DEFINED GDCM_USE_FILE AND GDCM_USE_FILE)
@@ -33,6 +42,15 @@ target_link_libraries(OpenMedView
         gdcmDSED
         gdcmDICT
         gdcmCommon
+        ITKCommon
+        ITKIOGDCM
+        ITKIOImageBase
+        VTK::IOGDCM
+        VTK::IOImage
+        VTK::ImagingCore
+        VTK::RenderingCore
+        VTK::RenderingImage
+        VTK::InteractionImage
         nlohmann_json::nlohmann_json
 )
 

@@ -7,8 +7,9 @@
 
 #include "OpenMedView/Anonymizer.h"
 #include "OpenMedView/AppTypes.h"
-#include "OpenMedView/FileScanner.h"
 #include "OpenMedView/DicomReader.h"
+#include "OpenMedView/DicomViewer.h"
+#include "OpenMedView/FileScanner.h"
 #include "OpenMedView/Logger.h"
 #include "OpenMedView/RuleEngine.h"
 
@@ -44,6 +45,7 @@ void PrintUsage(std::ostream& output)
 {
     output << "Usage:\n"
            << "  OpenMedView --inspect --input <path> [--recursive] [--summary]\n"
+           << "  OpenMedView --preview --input <file> [--output <file>]\n"
            << "  OpenMedView --anonymize --input <file> [--output <file>] --rules <file> [--dry-run] [--overwrite]\n"
            << "  OpenMedView --help\n";
 }
@@ -75,6 +77,11 @@ CliOptions ParseArguments(int argc, char* argv[])
 
         if (argument == "--anonymize") {
             options.mode = AppMode::Anonymize;
+            continue;
+        }
+
+        if (argument == "--preview" || argument == "--browse") {
+            options.mode = AppMode::Preview;
             continue;
         }
 
@@ -129,6 +136,9 @@ void PrintOptions(const CliOptions& options, std::ostream& output)
         break;
     case AppMode::Anonymize:
         output << "anonymize";
+        break;
+    case AppMode::Preview:
+        output << "preview";
         break;
     }
 
@@ -218,6 +228,17 @@ int main(int argc, char* argv[])
                 log << "Failed to inspect: " << file.string() << '\n';
             }
         }
+    } else if (options.mode == AppMode::Preview) {
+        log << "Starting DICOM preview generation.\n";
+
+        const std::filesystem::path outputFile = options.outputPath.value_or(
+            (*options.inputPath).parent_path() / ((*options.inputPath).stem().string() + "_preview.png"));
+
+        const bool success = openmedview::GenerateDicomPreview(*options.inputPath, outputFile, log);
+        if (!success) {
+            return 1;
+        }
+        log << "Preview export complete.\n";
     } else {
         try {
             log << "Loading anonymization rules.\n";
