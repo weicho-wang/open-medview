@@ -1,0 +1,9 @@
+{
+  "name": "open-medview",
+  "version-string": "0.1.0",
+  "description": "A C++ command-line tool for inspecting and anonymizing DICOM headers with GDCM.",
+  "dependencies": [
+    "gdcm",
+    "nlohmann-json"
+  ]
+}

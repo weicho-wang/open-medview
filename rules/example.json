@@ -1,0 +1,18 @@
+{
+  "rules": [
+    {
+      "tag": "(0010,0010)",
+      "action": "replace",
+      "value": "ANONYMIZED"
+    },
+    {
+      "tag": "(0010,0020)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0010,0030)",
+      "action": "mask",
+      "value": "YYYY****"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "rules": [
+    {
+      "tag": "(0010,0010)",
+      "action": "replace",
+      "value": "ANONYMIZED"
+    },
+    {
+      "tag": "(0010,0020)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0010,0030)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0010,0032)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0010,0040)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0008,0050)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0008,0080)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0008,0090)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0008,1010)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0008,1040)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0008,1070)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0008,1080)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0018,1000)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0018,1030)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0020,0010)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0040,0253)",
+      "action": "clear"
+    },
+    {
+      "tag": "(0040,1001)",
+      "action": "clear"
+    }
+  ]
+}
